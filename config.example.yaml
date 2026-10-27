@@ -1,0 +1,17 @@
+# Copy to config.yaml. known_devices is the approved asset register ("inventory as code"):
+# keep it in Git so every approval is a reviewed, dated change.
+database: lan_sentinel.db
+output_dir: reports
+interface: null        # null = auto from default route
+cidr: null             # null = auto; required if your subnet is larger than /22
+offline_minutes: 15    # critical asset unseen for longer -> CRITICAL_ASSET_OFFLINE
+
+alerts:
+  min_severity: high   # info | low | medium | high | critical
+  ntfy_url: null       # e.g. https://ntfy.sh/<long-random-topic>  (topic name = secret)
+
+known_devices: {}
+#  "aa:bb:cc:dd:ee:ff":
+#    name: Internet router
+#    owner: household-admin
+#    criticality: high   # high = alert when offline

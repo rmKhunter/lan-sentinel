@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lan-sentinel"
+version = "0.1.0"
+description = "LAN asset inventory, rogue-device and ARP-spoofing detection, with NIS-2 / ISO 27001 evidence reporting"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = ["scapy>=2.5", "pyvis>=0.3.2", "PyYAML>=6"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+lan-sentinel = "lan_sentinel.cli:main"
+
+[tool.setuptools]
+packages = ["lan_sentinel"]

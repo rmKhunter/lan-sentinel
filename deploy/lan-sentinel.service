@@ -1,0 +1,24 @@
+[Unit]
+Description=lan-sentinel scan (asset inventory + anomaly detection)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=lan-sentinel
+Group=lan-sentinel
+WorkingDirectory=/var/lib/lan-sentinel
+ExecStart=/opt/lan-sentinel/.venv/bin/lan-sentinel -c /etc/lan-sentinel/config.yaml scan
+
+# Least privilege: raw sockets only, no root.
+AmbientCapabilities=CAP_NET_RAW
+CapabilityBoundingSet=CAP_NET_RAW
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/var/lib/lan-sentinel
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_PACKET AF_NETLINK AF_UNIX
